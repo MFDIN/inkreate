@@ -11,7 +11,7 @@ interface IThemeContext {
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
 export function ThemeProvider({ children }: IChildren) {
-    const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(true)
 
     function changeTheme() {
         setIsDarkMode(!isDarkMode)   
