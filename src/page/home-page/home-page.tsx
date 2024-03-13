@@ -22,7 +22,7 @@ export default function HomePage() {
     const conRef = useRef<HTMLDivElement>(null)
 
     return (
-        <Container padding="16px 0px">
+        <Container padding="0px 0px">
             <HeaderComponent />
             {/* <TypeToggleBtn /> */}
 
@@ -41,9 +41,9 @@ export default function HomePage() {
                 justifyContent="center"
                 alignItems="center"
                 gap="24px"
-                marginTop="8px">
+                marginTop="8px"
+                marginBottom="32px">
                 <P fontWeight="inherit" textShadow={theme.textShadow}>{text.tips}</P>
-                <P fontWeight="inherit" textShadow={theme.textShadow}>{text.copyright}</P>
             </VContainer>
         )
     }
