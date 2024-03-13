@@ -41,8 +41,7 @@ export default function HomePage() {
                 justifyContent="center"
                 alignItems="center"
                 gap="24px"
-                marginTop="8px"
-                marginBottom="32px">
+                marginTop="8px">
                 <P fontWeight="inherit" textShadow={theme.textShadow}>{text.tips}</P>
             </VContainer>
         )
