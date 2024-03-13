@@ -1,40 +1,52 @@
-// const lightTheme = {
-//     backgroundColor: "#F5ECE3",
-//     color: "#F57E08",
-//     btnBgColor: "#FFFFFF",
-
-//     hoverBgColor: "#F5A346",
-//     hoverBtnBgColor: "#D6C0B0",
-//     hoverColor: "#F57E08",
-    
-//     activeColor: "#E8EDD9",
-//     activeBtnBgColor: "#F5A346",   
-// }
-
 const lightTheme = {
-    backgroundColor: "#E1F7DF",
-    color: "#A9774B",
-    btnBgColor: "#FFFFFF",
+    backgroundColor: "#e6e2cd",
+    containerBgColor: "#FFFFFF",
+    color: "#FD7733",
+    inputColor: "#FD7733",
+    buttonColor: "#FD7733",
 
-    hoverBgColor: "#FFC107",
-    hoverBtnBgColor: "#FFEB3B",
-    hoverColor: "#FF9800",
-    
     activeColor: "#FFFFFF",
-    activeBtnBgColor: "#F0A868",
+
+    inactiveBtnColor: "#FDBA74",
+
+    hoverActiveBtnColor: "#CC6200",
+    hoverActiveColor: "#FFFFFF",
+    
+    hoverInactiveBtnColor: "#D3D3D3",
+    hoverInactiveColor: "#FD7733",
+
+    // Slider
+    hoverBoxShadow: "0px 0px 0px 8px rgba(255, 180, 130, 0.3)",
+    clickBoxShadow: "0px 0px 0px 12px rgba(255, 180, 130, 0.3)",
+
+    boxShadow: "",
+    textShadow: ""
 }
 
 const darkTheme = {
-    backgroundColor: "#6152B1",
+    backgroundColor: "#000000",
+    containerBgColor: "#2C2040",
+    color: "#FD7733",
+    inputColor: "#FD7733",
+    buttonColor: "#FD7733",
 
-    color: "#E8EDD9",
-    btnBgColor: "#8673D1",
+    activeColor: "#2C2040",
+
+    inactiveBtnColor: "#EEDFEE",
+
+    hoverActiveBtnColor: "#CC6200",
+    hoverActiveColor: "#E4CDE2",
     
-    hoverBtnColor: "#9885E3",
-    hoverColor: "#E8EDD9",
-    
-    activeColor: "#F57E08",
-    activeBtnBgColor: "#7263C3",
+    hoverInactiveBtnColor: "#605C6C",
+    hoverInactiveColor: "#E4CDE2",
+
+    // Slider
+    hoverBoxShadow: "0px 0px 0px 8px rgba(228, 205, 226, 0.3)",
+    clickBoxShadow: "0px 0px 0px 12px rgba(228, 205, 226, 0.3)",
+
+    boxShadow: "0px 0px 16px 0.5px #FD773366",
+    textShadow: "0px 0px 8px #FD7733"
 }
+
 
 export { lightTheme, darkTheme }

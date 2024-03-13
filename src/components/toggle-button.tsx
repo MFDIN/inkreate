@@ -46,35 +46,42 @@ interface IToggleButton {
     btnBorderRadius?: string
 
     // Value
-    texts?: string[]
+    menus?: string[]
+    onClick?: (value: string) => void
 }
 
 export default function ToggleButton(props: IToggleButton) {
     const { theme } = useTheme()
     const [activeIdx, setActiveIdx] = useState(0)
 
-    function onBtnClicked(index: number) {
+    function onBtnClicked(index: number, value: string) {
         setActiveIdx(index)
+        props.onClick && props.onClick(value)
     }
 
     return (
-        <HContainer {...props} 
+        <HContainer {...props}
+            onClick={() => {}}
             justifyContent='space-between' 
             cursor='pointer'
-            backgroundColor={theme.btnBgColor}>
+            backgroundColor={theme.containerBgColor}
+            borderRadius='24px'>
 
-            {props.texts?.map((text, index) => (
+            {props.menus?.map((menu, index) => (                
                 <Button
-                key={index}
-                backgroundColor={activeIdx === index ? theme.activeBtnBgColor : theme.btnBgColor}
-                color={activeIdx === index ? theme.activeColor : theme.color}
-                boxSizing='border-box'
-                width='50%'
-                padding={props.btnPadding}
-                borderRadius='24px'
-                onClick={() => onBtnClicked(index)}
-                transition={activeIdx === index ? 'background-color 0.3s ease-in-out' : 'none'}>
-                    {text}
+                    key={index}
+                    backgroundColor={activeIdx === index ? theme.buttonColor : theme.containerBgColor}
+                    hoverBackgroundColor={activeIdx === index ? theme.hoverActiveBtnColor : theme.hoverInactiveBtnColor}
+                    color={activeIdx === index ? theme.activeColor : theme.color}
+                    hoverColor={activeIdx === index ? theme.hoverActiveColor : theme.hoverInactiveColor}
+                    boxSizing='border-box'
+                    width='50%'
+                    padding={props.btnPadding}
+                    borderRadius='24px'
+                    onClick={() => onBtnClicked(index, menu)}
+                    fontWeight='bold'
+                    transition='background-color 0.3s ease-in-out'>
+                    {menu}
                 </Button>
             ))}
 

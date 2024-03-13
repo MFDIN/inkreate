@@ -11,13 +11,11 @@ interface IContainer {
 const Cont = styled.div<IContainer>`
     display: flex;
     flex-direction: column;
-    
-    justify-content: center;
     align-items: center;
 
     padding: ${props => props.padding || '0px'};
 
-    width: 100vw;
+    width: 100%;
     height: auto;
     background-color: ${props => props.theme.backgroundColor};
     transition: background-color 1s ease;

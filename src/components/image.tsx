@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
+import P from "./p";
 
 interface IImage {
     width?: string,
@@ -29,5 +31,13 @@ const Img = styled.img<IImage>
 `
 
 export default function Image(props: IImage) {
-    return <Img {...props} src={props.src} />
+    const [error, setError] = useState(false)
+
+    return (
+        <>
+            {!error ? (
+                <Img {...props} src={props.src} onError={() => setError(true)} />
+            ) : null}
+        </>
+    )
 }

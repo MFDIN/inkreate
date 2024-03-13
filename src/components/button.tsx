@@ -2,6 +2,7 @@ import useTheme  from "../context/theme/theme-context.tsx";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { darkTheme, lightTheme } from "../settings/themes.ts";
+import { font } from "../settings/font";
 
 interface IButton {
     // Direction
@@ -71,6 +72,14 @@ interface IButton {
 
     // Disabled
     disabled?: boolean
+
+    // Hover
+    hoverBoxShadow?: string
+
+    // Mouse Event
+    onMouseDown?: (e: React.MouseEvent) => void
+    onMouseMove?: (e: React.MouseEvent) => void
+    onMouseUp?: (e: React.MouseEvent) => void
 }
 
 const Btn = styled.button<IButton>
@@ -84,8 +93,8 @@ const Btn = styled.button<IButton>
     bottom: ${props => props.bottom || 'auto'};
     left: ${props => props.left || 'auto'};
     right: ${props => props.right || 'auto'};
-    background-color: ${props => props.backgroundColor || props.theme.btnBgColor || 'transparent'};
-    color: ${props => props.color || props.theme.color || 'inherit'};
+    background-color: ${props => props.backgroundColor || props.theme.buttonColor || 'transparent'};
+    color: ${props => props.color || props.theme.activeColor || 'inherit'};
     width: ${props => props.width || 'auto'};
     height: ${props => props.height || 'auto'};
     padding: ${props => props.padding || '0px 0px'};
@@ -103,9 +112,8 @@ const Btn = styled.button<IButton>
     margin-left: ${props => props.margin ? props.margin : props.marginLeft || '0px'};
     margin-right: ${props => props.margin ? props.margin : props.marginRight || '0px'};
 
-
-    font-size: ${props => props.fontSize || 'inherit'};
-    font-family: ${props => props.fontFamily || 'inherit'};
+    font-size: ${font.globalSize || 'inherit'};
+    font-family: ${font.fontFamily || 'inherit'};
     font-weight: ${props => props.fontWeight || 'normal'};
     box-shadow: ${props => props.boxShadow || 'none'};
     cursor: ${props => props.cursor || 'pointer'};
@@ -119,15 +127,24 @@ const Btn = styled.button<IButton>
 
     // Hover
     &:hover {
+        box-shadow: ${props => props.hoverBoxShadow || 'none'};
         background-color: ${props => props.hoverBackgroundColor || 'none'};
-        color: ${props => props.theme.hoverColor};
+        color: ${props => props.hoverColor ? props.hoverColor : props.theme.activeColor || 'inherit'};
     }
 `
 
 export default function Button(props: IButton) {
     const { theme } = useTheme()
+
     return (
-        <Btn {...props} theme={theme} onClick={props.onClick}>
+        <Btn 
+            {...props} 
+            theme={theme}
+            onClick={props.onClick}
+            onMouseDown={props.onMouseDown}
+            onMouseUp={props.onMouseUp}
+            onMouseMove={props.onMouseMove}
+        >
             { props.children }
         </Btn>
     ) 
