@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import P from "./p";
 
 interface IImage {
     width?: string,

@@ -241,22 +241,22 @@ export default function HomePage() {
         )
     }
 
-    function TypeToggleBtn() {
-        const menus = [
-            text.alphabet, text.pfp
-        ]
+    // function TypeToggleBtn() {
+    //     const menus = [
+    //         text.alphabet, text.pfp
+    //     ]
 
-        return (
-            <ToggleButton
-                menus={menus}
-                marginTop="16px"
-                borderRadius="24px"
-                btnBorderRadius="24px"
-                btnPadding="10px 48px"
-                boxShadow="0px 0px 2px 0px rgba(0, 0, 0, 0.1)"
-            />
-        )
-    }
+    //     return (
+    //         <ToggleButton
+    //             menus={menus}
+    //             marginTop="16px"
+    //             borderRadius="24px"
+    //             btnBorderRadius="24px"
+    //             btnPadding="10px 48px"
+    //             boxShadow="0px 0px 2px 0px rgba(0, 0, 0, 0.1)"
+    //         />
+    //     )
+    // }
 
     function HeaderComponent() {
         return (
