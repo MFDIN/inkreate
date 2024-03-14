@@ -42,7 +42,7 @@ export default function HomePage() {
                 justifyContent="center"
                 alignItems="center"
                 gap="24px"
-                margin="20px 0px">
+                margin="4% 0px">
                 <P fontWeight="inherit" textShadow={theme.textShadow}>{text.tips}</P>
             </VContainer>
         )
@@ -77,7 +77,7 @@ export default function HomePage() {
         return (
             <Button
                 padding="1% 2%"
-                borderRadius="8px"
+                borderRadius="1vw"
                 transition="background-color 0.3s ease-in-out"
                 hoverBackgroundColor={isDownloading ? theme.inactiveBtnColor : theme.hoverActiveBtnColor}
                 backgroundColor={isDownloading ? theme.inactiveBtnColor : theme.buttonColor}
@@ -85,6 +85,7 @@ export default function HomePage() {
                 fontWeight="bold"
                 boxShadow={theme.boxShadow}
                 disabled={isDownloading ? true : false}
+                margin="4% 0% 0% 0%"
             >
                 {isDownloading ? text.downloading : text.download}
             </Button>
@@ -116,7 +117,7 @@ export default function HomePage() {
                 alignItems="center"
                 backgroundImage={bgImage}
                 backgroundSize="100% 100%"
-                margin="8vh 0px"
+                margin="4% 0px"
                 boxShadow={theme.boxShadow}
                 onClick={onContainerClick}
                 cursor="text"
@@ -221,7 +222,7 @@ export default function HomePage() {
                     tPadding="3.5%"
                     margin="6% 1.5vw"
                     borderRadius="24px"
-                    marginTop="-1.8%"
+                    marginTop="-1.5%"
                     min={min}
                     max={max}
                     step={step}
