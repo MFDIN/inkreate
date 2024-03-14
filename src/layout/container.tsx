@@ -16,7 +16,7 @@ const Cont = styled.div<IContainer>`
     padding: ${props => props.padding || '0px'};
 
     width: 100%;
-    height: auto;
+    min-height: 100vh;
     background-color: ${props => props.theme.backgroundColor};
     transition: background-color 1s ease;
 `

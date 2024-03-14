@@ -20,6 +20,7 @@ export default function HomePage() {
     const inputRef = useRef<HTMLInputElement>(null)
     const PRef = useRef<HTMLParagraphElement>(null)
     const conRef = useRef<HTMLDivElement>(null)
+    const imgRef = useRef<HTMLDivElement>(null)
 
     return (
         <Container padding="0px 0px">
@@ -75,7 +76,7 @@ export default function HomePage() {
 
         return (
             <Button
-                padding="8px 16px"
+                padding="1% 2%"
                 borderRadius="8px"
                 transition="background-color 0.3s ease-in-out"
                 hoverBackgroundColor={isDownloading ? theme.inactiveBtnColor : theme.hoverActiveBtnColor}
@@ -97,27 +98,30 @@ export default function HomePage() {
         const path = import.meta.env.VITE_FONT_PATH
 
         function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-            getInput(e, value, setValue, PRef)
+            getInput(e, value, setValue, imgRef)
         }
 
         function onContainerClick() {
             inputRef.current?.focus()
+            
+            if(imgRef.current)
+                imgRef.current.style.backgroundColor = "transparent"
         }
 
         return (
             <HContainer
                 ref={conRef}
-                width="750px"
-                height="250px"
+                width="80%"
                 justifyContent="center"
                 alignItems="center"
                 backgroundImage={bgImage}
-                backgroundSize="contain"
-                margin="64px 0px"
+                backgroundSize="100% 100%"
+                margin="8vh 0px"
                 boxShadow={theme.boxShadow}
                 onClick={onContainerClick}
                 cursor="text"
                 >
+
                 <Input
                     ref={inputRef}
                     position="absolute"
@@ -129,43 +133,51 @@ export default function HomePage() {
                     placeholder="Realize Kreation Here"
                     fontWeight="bold"
                     display="block"
-                    onKeyUp={onKeyDown}
-                    // onKeyDown={onKeyDown}
+                    onKeyDown={onKeyDown}
                     value=""
                     onChange={() => {}}
                 />
+
                 <HContainer
                     ref={PRef}
-                    textAlign="center"
-                    padding="2px 0px"
-                    overflow="hidden"
-                    whiteSpace="nowrap">
-                    {value === "" && 
-                        <P
-                            fontSize={fontSize}
-                            color="#808080"
-                            letterSpacing={letterSpacing}
-                            whiteSpace="nowrap"
+                    padding="16.165% 0px"
+                    cursor="text"
+                    >
+                    
+                    <HContainer
+                        ref={imgRef}
+                        textAlign="center"
+                        overflow="hidden"
+                        whiteSpace="nowrap"
                         >
-                            {text.kreation}
-                        </P>
-                    }
-
-                    {value.split(`${String.fromCharCode(219)}`).map((v, index) => (
-                        <div key={index}>
-                            {v === " " ? 
-                            (<P opacity="0">s</P>)
-                            : 
-                            (
-                                <Image
-                                    src={`${path}${v}.svg`} 
-                                    width={fontSize}
-                                    cursor="text"
-                                    padding={`0px ${letterSpacing}`}
-                                />
-                            )}
-                        </div>
-                    ))}
+                        {value === "" && 
+                            <P
+                                fontSize={fontSize}
+                                color="#808080"
+                                letterSpacing={letterSpacing}
+                                whiteSpace="nowrap"
+                            >
+                                {text.kreation}
+                            </P>
+                        }
+    
+                        {value.split(`${String.fromCharCode(219)}`).map((v, index) => (
+                            <div key={index}>
+                                {v === " " ? 
+                                (<P opacity="0">s</P>)
+                                : 
+                                (
+                                    <Image
+                                        src={`${path}${v}.svg`} 
+                                        width={fontSize}
+                                        cursor="text"
+                                        padding={`0px ${letterSpacing}`}
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </HContainer>
+                    
                 </HContainer>
             </HContainer>
         )
@@ -174,9 +186,9 @@ export default function HomePage() {
     function TypographyControls() {
         return (
             <HContainer
-                gap="32px"
+                gap="4vw"
                 alignItems="top"
-                marginTop = "32px"
+                marginTop = "4vw"
             >
                 <SizeToggleBtn />
                 <SpacingSlider />
@@ -198,14 +210,18 @@ export default function HomePage() {
         }
 
         return (
-            <VContainer gap="20px" height="auto">
+            <VContainer 
+            >
                 <P textShadow={theme.textShadow}>Spacing</P>
                 <Slider
-                    width="224px"
-                    tHeight="20px"
-                    height="6px"
+                    width="24vw"
+                    height="48%"
+                    tHeight="0%"
+                    tWidth="0%"
+                    tPadding="3.5%"
+                    margin="6% 1.5vw"
                     borderRadius="24px"
-                    marginTop="-6px"
+                    marginTop="-1.8%"
                     min={min}
                     max={max}
                     step={step}
@@ -227,13 +243,14 @@ export default function HomePage() {
         }
         
         return (
-            <VContainer gap="8px">
+            <VContainer>
                 <P textShadow={theme.textShadow}>Size</P>
                 <ToggleButton
+                    marginTop="6%"
                     menus={menus}
-                    btnPadding="8px 16px"
-                    borderRadius="24px"
-                    btnBorderRadius="24px"
+                    btnPadding="2.4%"
+                    borderRadius="50%"
+                    btnBorderRadius="50%"
                     boxShadow="0px 0px 2px 0px rgba(0, 0, 0, 0.1)"
                     onClick={onClick}
                 />
@@ -263,9 +280,9 @@ export default function HomePage() {
             <VContainer alignItems="center" justifyContent="center" gap="4px">
                 <Image 
                     src={import.meta.env.VITE_LOGO_PATH} 
-                    width="296px"/>
+                    width="24vw"/>
                 <P 
-                    fontSize="20px"
+                    fontSize="2vw"
                     textShadow={theme.textShadow}>
                     {text.by}
                 </P>

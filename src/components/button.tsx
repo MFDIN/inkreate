@@ -76,6 +76,8 @@ interface IButton {
     // Hover
     hoverBoxShadow?: string
 
+    flex?: string
+
     // Mouse Event
     onMouseDown?: (e: React.MouseEvent) => void
     onMouseMove?: (e: React.MouseEvent) => void
@@ -118,6 +120,8 @@ const Btn = styled.button<IButton>
     box-shadow: ${props => props.boxShadow || 'none'};
     cursor: ${props => props.cursor || 'pointer'};
     z-index: ${props => props.zIndex || 'auto'};
+
+    flex: ${props => props.flex || 'none'};
 
     box-sizing: ${props => props.boxSizing || 'content-box'};
 

@@ -1,12 +1,12 @@
 const font = {
     fontFamily: "'Permanent Marker', cursive",
-    globalSize: "16px",
+    globalSize: "1.5vw",
     fontSize: {
-        XS: "28px",
-        SM: "32px",
-        MD: "36px",
-        LG: "40px",
-        XL: "44px"
+        XS: "2vw",
+        SM: "3vw",
+        MD: "3.2vw",
+        LG: "3.6vw",
+        XL: "4vw"
     },
 }
 

@@ -6,7 +6,11 @@ import styled from "@emotion/styled";
 interface ISliderProps {
     width?: string;
     height?: string;
+    tWidth?: string;
     tHeight?: string;
+    tPadding?: string;
+    padding?: string;
+    margin?: string;
     borderRadius?: string;
     theme?: typeof lightTheme | typeof darkTheme;
     min?: number;
@@ -23,7 +27,7 @@ const Input = styled.input<ISliderProps>
     height: ${props => props.height};
     border-radius: ${props => props.borderRadius};
     background-color: ${props => props.theme.backgroundColor};
-    margin: 0px 12px;
+    margin: ${props => props.margin || '0px'};
     border: none;
     outline: none;
 
@@ -33,14 +37,15 @@ const Input = styled.input<ISliderProps>
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: ${props => props.tHeight || '8px'};
-        height: ${props => props.tHeight || '8px'};
+        width: ${props => props.tWidth};
+        height: ${props => props.tHeight};
+        padding: ${props => props.tPadding};
         background-color: ${props => props.theme.buttonColor};
         border-radius: 50%;
         cursor: pointer;
         margin-top: ${props => props.marginTop || '0px'};
         transition: box-shadow 0.15s ease-in-out;
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 1vw 0px rgba(0, 0, 0, 0.2);
 
         &:hover {
             box-shadow: ${props => props.theme.hoverBoxShadow};
@@ -69,21 +74,18 @@ export default function Slider(props: ISliderProps) {
     }
 
     return (
-        <>
-            <Input
-                {... props}
-                type="range"
-                min={props.min}
-                max={props.max}
-                step={props.step}
-                width={props.width}
-                height={props.height}
-                tHeight={props.tHeight}
-                value={props.value}
-                theme={theme}
-                onChange={(e) => handleChange(e)}
-            />
-        </>
-            
+        <Input
+            {... props}
+            type="range"
+            min={props.min}
+            max={props.max}
+            step={props.step}
+            width={props.width}
+            height={props.height}
+            tHeight={props.tHeight}
+            value={props.value}
+            theme={theme}
+            onChange={(e) => handleChange(e)}
+        />    
     );
 };

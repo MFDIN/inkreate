@@ -64,6 +64,7 @@ export default function ToggleButton(props: IToggleButton) {
             onClick={() => {}}
             justifyContent='space-between' 
             cursor='pointer'
+            width='28vw'
             backgroundColor={theme.containerBgColor}
             borderRadius='24px'>
 
@@ -75,7 +76,7 @@ export default function ToggleButton(props: IToggleButton) {
                     color={activeIdx === index ? theme.activeColor : theme.color}
                     hoverColor={activeIdx === index ? theme.hoverActiveColor : theme.hoverInactiveColor}
                     boxSizing='border-box'
-                    width='50%'
+                    flex="1"
                     padding={props.btnPadding}
                     borderRadius='24px'
                     onClick={() => onBtnClicked(index, menu)}

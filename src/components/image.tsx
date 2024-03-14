@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface IImage {
     width?: string,
@@ -29,14 +29,17 @@ const Img = styled.img<IImage>
     object-position: ${props => props.objectPosition || 'center'};
 `
 
-export default function Image(props: IImage) {
+function Imgs(props: IImage, ref: React.Ref<HTMLImageElement>) {
     const [error, setError] = useState(false)
 
     return (
         <>
             {!error ? (
-                <Img {...props} src={props.src} onError={() => setError(true)} />
+                <Img {...props} src={props.src} onError={() => setError(true)} ref={ref} />
             ) : null}
         </>
     )
 }
+
+const Image = React.forwardRef(Imgs)
+export default Image

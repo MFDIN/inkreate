@@ -41,8 +41,8 @@ const darkTheme = {
     hoverInactiveColor: "#E4CDE2",
 
     // Slider
-    hoverBoxShadow: "0px 0px 0px 8px rgba(228, 205, 226, 0.3)",
-    clickBoxShadow: "0px 0px 0px 12px rgba(228, 205, 226, 0.3)",
+    hoverBoxShadow: "0px 0px 0px .8vw rgba(228, 205, 226, 0.3)",
+    clickBoxShadow: "0px 0px 0px 1.2vw rgba(228, 205, 226, 0.3)",
 
     boxShadow: "0px 0px 16px 0.5px #FD773366",
     textShadow: "0px 0px 8px #FD7733"

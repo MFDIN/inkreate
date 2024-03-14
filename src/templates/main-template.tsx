@@ -30,7 +30,7 @@ export default function MainTemplate({ children }: IChildren) {
                 >
                 <Image 
                     src={src}
-                    width="48px"
+                    width="4vw"
                     cursor="pointer"
                 />
             </Button>
