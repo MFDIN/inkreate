@@ -49,6 +49,7 @@ interface IInput {
     value?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 
     placeholder?: string,
     
@@ -129,7 +130,9 @@ function Ipt (props: IInput, ref?: React.Ref<HTMLInputElement>) {
                 fontSize={fontSize}
                 letterSpacing={letterSpacing}
                 theme={theme}
-                onKeyDown={(e) => props.onKeyDown && props.onKeyDown(e)}>
+                onKeyDown={(e) => props.onKeyDown && props.onKeyDown(e)}
+                onKeyUp={(e) => props.onKeyUp && props.onKeyUp(e)}
+                >
                 {props.children}
             </I>
 }

@@ -41,7 +41,7 @@ export default function HomePage() {
                 justifyContent="center"
                 alignItems="center"
                 gap="24px"
-                marginTop="8px">
+                margin="20px 0px">
                 <P fontWeight="inherit" textShadow={theme.textShadow}>{text.tips}</P>
             </VContainer>
         )
@@ -129,7 +129,8 @@ export default function HomePage() {
                     placeholder="Realize Kreation Here"
                     fontWeight="bold"
                     display="block"
-                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyDown}
+                    // onKeyDown={onKeyDown}
                     value=""
                     onChange={() => {}}
                 />
