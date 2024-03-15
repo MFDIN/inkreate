@@ -102,6 +102,7 @@ const Container = styled.div<IContainer>
     whiteSpace: ${props => props.whiteSpace || 'normal'}
 
     box-sizing: ${props => props.boxSizing || 'content-box'};
+    touch-action: manipulation;
 `
 
 function HC(props: IContainer, ref: React.Ref<HTMLDivElement>) {

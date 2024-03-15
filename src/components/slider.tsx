@@ -30,6 +30,7 @@ const Input = styled.input<ISliderProps>
     margin: ${props => props.margin || '0px'};
     border: none;
     outline: none;
+    touch-action: none;
 
     -webkit-appearance: none;
     appearance: none;
