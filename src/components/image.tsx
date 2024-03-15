@@ -42,4 +42,4 @@ function Imgs(props: IImage, ref: React.Ref<HTMLImageElement>) {
 }
 
 const Image = React.forwardRef(Imgs)
-export default Image
+export { Image }

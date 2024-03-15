@@ -1,5 +1,5 @@
 import Button from "../components/button";
-import Image from "../components/image";
+import { Image } from "../components/image";
 import useTheme from "../context/theme/theme-context";
 import { IChildren } from "../interfaces/children-interface";
 import styled from "@emotion/styled";

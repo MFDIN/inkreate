@@ -9,11 +9,10 @@ import Slider from "../../components/slider";
 import Input from "../../components/input";
 import { font } from "../../settings/font";
 import useFont from "../../context/font/font-context";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useTheme from "../../context/theme/theme-context";
-import html2canvas from "html2canvas";
 import { getInput } from "../../controller/input-controller";
-import Image from "../../components/image";
+import { Image as I } from "../../components/image";
 
 export default function HomePage() {
     const { theme } = useTheme()
@@ -21,6 +20,10 @@ export default function HomePage() {
     const PRef = useRef<HTMLParagraphElement>(null)
     const conRef = useRef<HTMLDivElement>(null)
     const imgRef = useRef<HTMLDivElement>(null)
+
+    const [value, setValue] = useState("")
+    const bgImage = import.meta.env.VITE_BACKGROUND_HEADER
+    const path = import.meta.env.VITE_FONT_PATH
 
     return (
         <Container padding="0px 0px">
@@ -49,29 +52,83 @@ export default function HomePage() {
     }
 
     function DownloadBtn() {
-        const { theme } = useTheme()
+        const { fontSize, letterSpacing } = useFont()
         const [isDownloading, setIsDownloading] = useState(false)
 
-        function onClick() {
-            setIsDownloading(true)
+        async function createImgBitMap(path: string) {
+            const imgResponse = await fetch(path)
+            const imgBlob = await imgResponse.blob()
+            return await createImageBitmap(imgBlob)
+        }
 
-            setTimeout(() => {
-                if(inputRef.current && PRef.current) {
-                    setTimeout(async () => {
-                        if(conRef.current) {
-                            await html2canvas(conRef.current, {useCORS: true, scale: 2})
-                            .then((canvas) => {
-                                const imgData = canvas.toDataURL("image/png")
-                                const link = document.createElement("a")
-                                link.href = imgData
-                                link.download = "kreation.png"
-                                link.click()
-                            }).then(() => setIsDownloading(false))
-                            .catch(() => setIsDownloading(false))
-                        }
-                    }, 100)
+        async function drawImage() {
+            // Drawing The Background
+            const canvas = document.createElement("canvas")
+            const ctx = canvas.getContext("2d")
+            const image = await createImgBitMap(bgImage)
+
+            canvas.width = image.width
+            canvas.height = image.height
+
+            ctx?.drawImage(image, 0, 0)
+
+            // Drawing the Letter
+            const letters: Array<string | HTMLImageElement> = []
+            let letterWidth = 0
+
+            const padding = parseFloat(letterSpacing) * 3
+            const size = parseFloat(fontSize)
+            
+            const vw = window.innerWidth
+            const scale = (vw * size * 1.55) / 100
+
+            value.split(`${String.fromCharCode(219)}`).map((v) => {
+                if(v === " ") {
+                    letters.push(" ")
+                    letterWidth += 10
                 }
-            }, 500)
+
+                else {
+                    const image = new Image()
+                    image.src = `${path}${v}.svg`
+                    letters.push(image)
+                    letterWidth += scale + padding
+                }
+            })
+
+            let x = (canvas.width - letterWidth) / 2 - 24
+
+            for(let i = 0; i < letters.length; i++) {
+                const y = (canvas.height - scale) / 2
+
+                if(typeof letters[i] === "string") {
+                    x += 10
+                }
+
+                else {
+                    ctx?.drawImage(letters[i] as HTMLImageElement, x, y, scale, scale)
+                    x += scale + padding
+                }
+            }
+
+            canvas.toBlob(blob => {
+                if(blob) {
+                    const imageUrl = URL.createObjectURL(blob)
+                    const link = document.createElement("a")
+                    
+                    link.href = imageUrl
+                    link.download = "kreation.png"
+                    link.click()
+
+                    URL.revokeObjectURL(imageUrl)
+                }
+            }, "image/png")
+        }
+
+        async function onClick() {
+            setIsDownloading(true)
+            await drawImage()
+            setIsDownloading(false)
         }
 
         return (
@@ -91,12 +148,13 @@ export default function HomePage() {
             </Button>
         )
     }
-
-    function TextInput() {
-        const bgImage = import.meta.env.VITE_BACKGROUND_HEADER
+    
+    function TextInput() {      
         const { letterSpacing, fontSize } = useFont()
-        const [value, setValue] = useState("")
-        const path = import.meta.env.VITE_FONT_PATH
+        
+        useEffect(() => {
+            inputRef.current?.focus()
+        }, [value])
 
         function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
             getInput(e, value, setValue, imgRef)
@@ -168,7 +226,7 @@ export default function HomePage() {
                                 (<P opacity="0">s</P>)
                                 : 
                                 (
-                                    <Image
+                                    <I
                                         src={`${path}${v}.svg`} 
                                         width={fontSize}
                                         cursor="text"
@@ -279,7 +337,7 @@ export default function HomePage() {
     function HeaderComponent() {
         return (
             <VContainer alignItems="center" justifyContent="center" gap="4px">
-                <Image 
+                <I 
                     src={import.meta.env.VITE_LOGO_PATH} 
                     width="24vw"/>
                 <P 

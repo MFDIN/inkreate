@@ -29,7 +29,7 @@ export function getInput(e: React.KeyboardEvent<HTMLInputElement>,
         imgRef.current.style.backgroundColor = 'blue'
     }
     
-    else if(input.length === 1 && /[<#*?:"/>]/.test(input)) {
+    else if(input.length === 1 && /[<#*?:"/\\>]/.test(input)) {
         if(input === "<") setValue(`${value}${String.fromCharCode(219)}less_than`)
         else if(input === ">") setValue(`${value}${String.fromCharCode(219)}greater_than`)
         else if(input === "*") setValue(`${value}${String.fromCharCode(219)}asterisk`)
@@ -38,9 +38,10 @@ export function getInput(e: React.KeyboardEvent<HTMLInputElement>,
         else if(input === "/") setValue(`${value}${String.fromCharCode(219)}divide`)
         else if(input === "#") setValue(`${value}${String.fromCharCode(219)}pagar`)
         else if(input === "?") setValue(`${value}${String.fromCharCode(219)}question_mark`)
+        else if(input === "\\") setValue(`${value}${String.fromCharCode(219)}forward_dash`)
     }
     
-    else if(input.length === 1 && /[A-Z0-9`~!@$%^&()-_=+\[\]{};',.\\|]/.test(input))
+    else if(input.length === 1 && /[A-Z0-9`~!@$%^&()-_=+\[\]{};',.|]/.test(input))
         setValue(`${value}${String.fromCharCode(219)}${input}`);
     
     else if(input.length === 1 && input === ' ') 
