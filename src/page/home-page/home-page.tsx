@@ -79,8 +79,7 @@ export default function HomePage() {
             const padding = parseFloat(letterSpacing) * 3
             const size = parseFloat(fontSize)
             
-            const vw = window.innerWidth
-            const scale = (vw * size * 1.55) / 100
+            const scale = size * 20
 
             value.split(`${String.fromCharCode(219)}`).map((v) => {
                 if(v === " ") {

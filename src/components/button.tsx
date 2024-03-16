@@ -86,7 +86,7 @@ interface IButton {
 
 const Btn = styled.button<IButton>
 `
-    touch-action: manipulation;
+    touch-action: none;
     display: ${props => props.display || 'flex'};
     flex-direction: ${props => props.flexDirection || 'row'};
     justify-content: ${props => props.justifyContent || 'center'};
